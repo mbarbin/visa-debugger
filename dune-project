@@ -35,11 +35,19 @@
    (and
     (>= v0.16)
     (< v0.17)))
+  (core_unix
+   (and
+    (>= v0.16)
+    (< v0.17)))
   (expect-test-helpers
    (and
     :with-test
     (>= v0.16)
     (< v0.17)))
+  (fpath
+   (>= 0.7.3))
+  (fpath-base
+   (>= 0.0.9))
   (ppx_compare
    (and
     (>= v0.16)
