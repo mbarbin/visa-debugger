@@ -39,11 +39,6 @@
    (and
     (>= v0.16)
     (< v0.17)))
-  (expect-test-helpers
-   (and
-    :with-test
-    (>= v0.16)
-    (< v0.17)))
   (fpath
    (>= 0.7.3))
   (fpath-base
@@ -54,11 +49,6 @@
     (< v0.17)))
   (ppx_enumerate
    (and
-    (>= v0.16)
-    (< v0.17)))
-  (ppx_expect
-   (and
-    :with-test
     (>= v0.16)
     (< v0.17)))
   (ppx_hash
@@ -83,10 +73,6 @@
     (>= v0.16)
     (< v0.17)))
   (ppx_sexp_value
-   (and
-    (>= v0.16)
-    (< v0.17)))
-  (stdio
    (and
     (>= v0.16)
     (< v0.17)))))
