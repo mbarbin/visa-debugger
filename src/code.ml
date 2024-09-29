@@ -2,19 +2,19 @@ include Visa_simulator.Code
 
 let render_lines_for_debugging t =
   let int_len = Array.length t.statements |> Int.to_string |> String.length in
-  let index i = sprintf "%0*d" int_len i in
+  let index i = Printf.sprintf "%0*d" int_len i in
   Array.mapi t.statements ~f:(fun i { labels; assembly_instruction } ->
     let labels =
       if List.is_empty labels
       then ""
       else (
         let labels =
-          List.map labels ~f:(fun t -> Visa.Label.to_string t.symbol)
+          List.map labels ~f:(fun t -> Visa.Label.to_string t.txt)
           |> String.concat ~sep:","
         in
-        sprintf "%s: " labels)
+        Printf.sprintf "%s: " labels)
     in
-    sprintf
+    Printf.sprintf
       "%s| %s%s"
       (index i)
       labels

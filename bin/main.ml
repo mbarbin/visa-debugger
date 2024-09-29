@@ -1,1 +1,6 @@
-let () = Command_unix_for_opam.run Visa_debugger.main
+let () =
+  Cmdlang_cmdliner_runner.run
+    Visa_debugger.main
+    ~name:"visa-debugger"
+    ~version:"%%VERSION%%"
+;;

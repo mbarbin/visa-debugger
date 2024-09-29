@@ -24,7 +24,7 @@ let next_instruction (t : t) =
   return { assembly_instruction with arguments }
 ;;
 
-let run_bogue (t : t) ~error_log =
+let run_bogue (t : t) =
   let memory_widget =
     Sexp.to_string_hum [%sexp (t.memory : Visa_simulator.Memory.t)]
     |> Bogue.Widget.text_display ~w:500 ~h:12000
@@ -55,11 +55,11 @@ let run_bogue (t : t) ~error_log =
     |> Bogue.Layout.make_clip ~h:200
   in
   let execution_stack_contents () =
-    [ [ sprintf
+    [ [ Printf.sprintf
           "code_pointer = %0*d"
           (code_length |> Int.to_string |> String.length)
           t.execution_stack.code_pointer
-      ; sprintf
+      ; Printf.sprintf
           "Next instruction: %s"
           (match next_instruction t with
            | Ok assembly_instruction ->
@@ -88,8 +88,8 @@ let run_bogue (t : t) ~error_log =
       (Sexp.to_string_hum [%sexp (t.memory : Visa_simulator.Memory.t)])
   in
   let step arg =
-    (match Visa_simulator.step t ~error_log with
-     | Error e -> prerr_endline (Sexp.to_string_hum [%sexp (e : Error.t)])
+    (match Visa_simulator.step t with
+     | Error e -> Stdlib.prerr_endline (Sexp.to_string_hum [%sexp (e : Error.t)])
      | Ok (Macro_call { macro_name = _ }) -> ()
      | Ok (Executed { instruction = _; continue = _ }) -> ());
     Bogue.Widget.set_text execution_stack_widget (execution_stack_contents ());
@@ -161,20 +161,20 @@ let run_bogue (t : t) ~error_log =
 ;;
 
 let bogue_cmd =
-  Command.basic
+  Command.make
     ~summary:"parse an assembler program and simulate its execution in a bogue window"
-    (let open Command.Let_syntax in
-     let%map_open path = anon ("FILE" %: Arg_type.create Fpath.v)
-     and error_log_config = Error_log.Config.param
-     and visa_simulator_config = Visa_simulator.Config.param in
-     Error_log.report_and_exit ~config:error_log_config (fun error_log ->
-       let open Or_error.Let_syntax in
-       let program = Parsing_utils.parse_file_exn (module Visa_syntax) ~path ~error_log in
-       let%bind visa_simulator =
-         Visa_simulator.create ~config:visa_simulator_config ~error_log ~program
-       in
-       run_bogue visa_simulator ~error_log;
-       return ()))
+    (let%map_open.Command () = Err_cli.set_config ()
+     and path =
+       Arg.pos
+         ~pos:0
+         (Param.validated_string (module Fpath))
+         ~docv:"FILE"
+         ~doc:"assembly file"
+     and visa_simulator_config = Visa_simulator.Config.arg in
+     let program = Parsing_utils.parse_file_exn (module Visa_syntax) ~path in
+     let visa_simulator = Visa_simulator.create ~config:visa_simulator_config ~program in
+     run_bogue visa_simulator;
+     ())
 ;;
 
 let main = Command.group ~summary:"visa simulator" [ "bogue", bogue_cmd ]

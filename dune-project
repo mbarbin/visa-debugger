@@ -8,7 +8,7 @@
 
 (authors "Mathieu Barbin")
 
-(maintainers "Mathieu Barbin")
+(maintainers "Mathieu Barbin <opensource@mbarbin.org>")
 
 (source
  (github mbarbin/visa-debugger))
@@ -21,47 +21,33 @@
  (depends
   (ocaml
    (>= 5.1))
+  (ocamlformat
+   (and
+    :with-dev-setup
+    (= 0.26.2)))
   (base
    (and
     (>= v0.16)
     (< v0.17)))
   (bogue
-   (>= 20221112))
+   (= 20240928))
   (bopkit
-   (>= 0.2.7))
-  (command-unix-for-opam
-   (>= 0.0.2))
-  (core
-   (and
-    (>= v0.16)
-    (< v0.17)))
-  (core_unix
-   (and
-    (>= v0.16)
-    (< v0.17)))
+   (>= 0.3.2))
+  (cmdlang
+   (>= 0.0.5))
+  (cmdlang-cmdliner-runner
+   (>= 0.0.5))
+  (err
+   (>= 0.0.5))
+  (err-cli
+   (>= 0.0.5))
   (fpath
    (>= 0.7.3))
-  (fpath-base
-   (>= 0.0.9))
-  (ppx_compare
-   (and
-    (>= v0.16)
-    (< v0.17)))
-  (ppx_enumerate
-   (and
-    (>= v0.16)
-    (< v0.17)))
-  (ppx_hash
-   (and
-    (>= v0.16)
-    (< v0.17)))
-  (ppx_here
-   (and
-    (>= v0.16)
-    (< v0.17)))
+  (loc
+   (>= 0.2.0))
   (ppx_js_style
    (and
-    :dev
+    :with-dev-setup
     (>= v0.16)
     (< v0.17)))
   (ppx_let

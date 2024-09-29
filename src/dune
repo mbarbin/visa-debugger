@@ -8,17 +8,16 @@
   -warn-error
   +a
   -open
-  Fpath_base
+  Base
   -open
-  Core)
+  Cmdlang)
  (libraries
-  bopkit.bit-utils
+  base
   bogue
-  core
-  core_unix
-  core_unix.core_thread
+  cmdlang
+  err
+  err-cli
   fpath
-  fpath-base
   bopkit.visa
   bopkit.visa-assembler
   bopkit.visa-simulator
@@ -26,11 +25,4 @@
  (lint
   (pps ppx_js_style -check-doc-comments))
  (preprocess
-  (pps
-   ppx_compare
-   ppx_enumerate
-   ppx_hash
-   ppx_here
-   ppx_let
-   ppx_sexp_conv
-   ppx_sexp_value)))
+  (pps -unused-code-warnings=force ppx_let ppx_sexp_conv ppx_sexp_value)))

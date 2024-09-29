@@ -5,28 +5,28 @@ module Macro_frame = struct
     let int_len =
       Array.length t.assembly_instructions |> Int.to_string |> String.length
     in
-    let index i = sprintf "%0*d" int_len i in
-    [ [ sprintf "/ %s" (t.macro_name.symbol |> Visa.Macro_name.to_string)
-      ; sprintf
+    let index i = Printf.sprintf "%0*d" int_len i in
+    [ [ Printf.sprintf "/ %s" (t.macro_name.txt |> Visa.Macro_name.to_string)
+      ; Printf.sprintf
           "| %s"
           (t.bindings
-           |> List.map ~f:(fun (parameter_name, (argument : _ With_loc.t)) ->
-             sprintf
+           |> List.map ~f:(fun (parameter_name, (argument : _ Loc.Txt.t)) ->
+             Printf.sprintf
                "%s=>%s"
                (Visa.Parameter_name.to_string parameter_name)
-               (Visa.Assembly_instruction.Argument.to_string argument.symbol))
+               (Visa.Assembly_instruction.Argument.to_string argument.txt))
            |> String.concat ~sep:", ")
       ; "|"
-      ; sprintf "| macro_code_pointer = %s" (index t.macro_code_pointer)
+      ; Printf.sprintf "| macro_code_pointer = %s" (index t.macro_code_pointer)
       ; "|"
       ]
     ; Array.mapi t.assembly_instructions ~f:(fun i assembly_instruction ->
-        sprintf
+        Printf.sprintf
           "| %s: %s"
           (index i)
           (Visa.Assembly_instruction.to_string assembly_instruction))
       |> Array.to_list
-    ; [ sprintf "\\" ]
+    ; [ Printf.sprintf "\\" ]
     ]
     |> List.concat
   ;;
