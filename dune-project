@@ -20,15 +20,15 @@
  (synopsis "A graphical debugger for visa assembly programs (bopkit)")
  (depends
   (ocaml
-   (>= 5.1))
+   (>= 5.2))
   (ocamlformat
    (and
     :with-dev-setup
     (= 0.26.2)))
   (base
    (and
-    (>= v0.16)
-    (< v0.17)))
+    (>= v0.17)
+    (< v0.18)))
   (bogue
    (= 20240928))
   (bopkit
@@ -48,17 +48,17 @@
   (ppx_js_style
    (and
     :with-dev-setup
-    (>= v0.16)
-    (< v0.17)))
+    (>= v0.17)
+    (< v0.18)))
   (ppx_let
    (and
-    (>= v0.16)
-    (< v0.17)))
+    (>= v0.17)
+    (< v0.18)))
   (ppx_sexp_conv
    (and
-    (>= v0.16)
-    (< v0.17)))
+    (>= v0.17)
+    (< v0.18)))
   (ppx_sexp_value
    (and
-    (>= v0.16)
-    (< v0.17)))))
+    (>= v0.17)
+    (< v0.18)))))

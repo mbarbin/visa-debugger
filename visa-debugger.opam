@@ -8,10 +8,10 @@ homepage: "https://github.com/mbarbin/visa-debugger"
 doc: "https://mbarbin.github.io/visa-debugger/"
 bug-reports: "https://github.com/mbarbin/visa-debugger/issues"
 depends: [
-  "dune" {>= "3.15"}
-  "ocaml" {>= "5.1"}
+  "dune" {>= "3.16"}
+  "ocaml" {>= "5.2"}
   "ocamlformat" {with-dev-setup & = "0.26.2"}
-  "base" {>= "v0.16" & < "v0.17"}
+  "base" {>= "v0.17" & < "v0.18"}
   "bogue" {= "20240928"}
   "bopkit" {>= "0.3.2"}
   "cmdlang" {>= "0.0.5"}
@@ -20,10 +20,10 @@ depends: [
   "err-cli" {>= "0.0.5"}
   "fpath" {>= "0.7.3"}
   "loc" {>= "0.2.0"}
-  "ppx_js_style" {with-dev-setup & >= "v0.16" & < "v0.17"}
-  "ppx_let" {>= "v0.16" & < "v0.17"}
-  "ppx_sexp_conv" {>= "v0.16" & < "v0.17"}
-  "ppx_sexp_value" {>= "v0.16" & < "v0.17"}
+  "ppx_js_style" {with-dev-setup & >= "v0.17" & < "v0.18"}
+  "ppx_let" {>= "v0.17" & < "v0.18"}
+  "ppx_sexp_conv" {>= "v0.17" & < "v0.18"}
+  "ppx_sexp_value" {>= "v0.17" & < "v0.18"}
   "odoc" {with-doc}
 ]
 build: [
