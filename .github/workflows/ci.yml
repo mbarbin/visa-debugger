@@ -12,7 +12,7 @@ jobs:
         os:
           - ubuntu-latest
         ocaml-compiler:
-          - 5.1.x
+          - 5.2.x
 
     runs-on: ${{ matrix.os }}
 
@@ -27,17 +27,17 @@ jobs:
           sudo apt-get install libsdl2-dev libsdl2-image-dev
 
       - name: Setup OCaml
-        uses: ocaml/setup-ocaml@v2
+        uses: ocaml/setup-ocaml@v3
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
           opam-repositories: |
             default: https://github.com/ocaml/opam-repository.git
             mbarbin: https://github.com/mbarbin/opam-repository.git
-#           janestreet-bleeding: https://ocaml.janestreet.com/opam-repository
+#           janestreet-bleeding: https://github.com/janestreet/opam-repository.git
 #           janestreet-bleeding-external: https://github.com/janestreet/opam-repository.git#external-packages
 
       - name: Install dependencies
-        run: opam install . --deps-only --with-doc --with-test
+        run: opam install . --deps-only --with-doc --with-test --with-dev-setup
 
       - name: Build
         run: opam exec -- dune build @all @lint
@@ -49,10 +49,10 @@ jobs:
         run: git diff --exit-code
 
       - name: Lint opam
-        uses: ocaml/setup-ocaml/lint-opam@v2
+        uses: ocaml/setup-ocaml/lint-opam@v3
 
       - name: Lint fmt
-        uses: ocaml/setup-ocaml/lint-fmt@v2
+        uses: ocaml/setup-ocaml/lint-fmt@v3
 
       - name: Lint doc
-        uses: ocaml/setup-ocaml/lint-doc@v2
+        uses: ocaml/setup-ocaml/lint-doc@v3
