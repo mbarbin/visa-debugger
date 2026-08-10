@@ -1,6 +1,7 @@
-let () =
-  Cmdlang_cmdliner_runner.run
-    Visa_debugger.main
-    ~name:"visa-debugger"
-    ~version:"%%VERSION%%"
+let version =
+  match Build_info.V1.version () with
+  | None -> "n/a"
+  | Some v -> Build_info.V1.Version.to_string v
 ;;
+
+let () = Cmdlang_cmdliner_err_runner.run Visa_debugger.main ~name:"visa-debugger" ~version

@@ -104,7 +104,7 @@ let run_bogue (t : t) =
                 String.length str = 8
                 && String.for_all str ~f:(fun c -> Char.equal c '0' || Char.equal c '1'))
         *)
-      ~max_size:8
+      ~max_len:8
       ()
   in
   let set_register memory_layout arg =
@@ -163,7 +163,7 @@ let run_bogue (t : t) =
 let bogue_cmd =
   Command.make
     ~summary:"parse an assembler program and simulate its execution in a bogue window"
-    (let%map_open.Command () = Err_cli.set_config ()
+    (let%map_open.Command () = Log_cli.set_config ()
      and path =
        Arg.pos
          ~pos:0
@@ -171,7 +171,7 @@ let bogue_cmd =
          ~docv:"FILE"
          ~doc:"assembly file"
      and visa_simulator_config = Visa_simulator.Config.arg in
-     let program = Parsing_utils.parse_file_exn (module Visa_syntax) ~path in
+     let program = Parsing_utils.parse_file_exn (module Visa_parser) ~path in
      let visa_simulator = Visa_simulator.create ~config:visa_simulator_config ~program in
      run_bogue visa_simulator;
      ())

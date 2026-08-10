@@ -8,17 +8,18 @@ homepage: "https://github.com/mbarbin/visa-debugger"
 doc: "https://mbarbin.github.io/visa-debugger/"
 bug-reports: "https://github.com/mbarbin/visa-debugger/issues"
 depends: [
-  "dune" {>= "3.16"}
+  "dune" {>= "3.17"}
   "ocaml" {>= "5.2"}
-  "ocamlformat" {with-dev-setup & = "0.26.2"}
+  "ocamlformat" {with-dev-setup & = "0.29.0"}
   "base" {>= "v0.17" & < "v0.18"}
-  "bogue" {= "20240928"}
+  "bogue" {= "20260208"}
   "bopkit" {>= "0.3.2"}
   "cmdlang" {>= "0.0.5"}
-  "cmdlang-cmdliner-runner" {>= "0.0.5"}
-  "err" {>= "0.0.5"}
-  "err-cli" {>= "0.0.5"}
+  "cmdlang-cmdliner-err-runner" {>= "0.0.16"}
+  "dune-build-info" {>= "3.17"}
   "fpath" {>= "0.7.3"}
+  "pplumbing-err" {>= "0.0.16"}
+  "pplumbing-log-cli" {>= "0.0.16"}
   "loc" {>= "0.2.0"}
   "ppx_js_style" {with-dev-setup & >= "v0.17" & < "v0.18"}
   "ppx_let" {>= "v0.17" & < "v0.18"}

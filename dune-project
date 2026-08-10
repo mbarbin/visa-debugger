@@ -1,4 +1,4 @@
-(lang dune 3.16)
+(lang dune 3.17)
 
 (name visa-debugger)
 
@@ -24,25 +24,27 @@
   (ocamlformat
    (and
     :with-dev-setup
-    (= 0.26.2)))
+    (= 0.29.0)))
   (base
    (and
     (>= v0.17)
     (< v0.18)))
   (bogue
-   (= 20240928))
+   (= 20260208))
   (bopkit
    (>= 0.3.2))
   (cmdlang
    (>= 0.0.5))
-  (cmdlang-cmdliner-runner
-   (>= 0.0.5))
-  (err
-   (>= 0.0.5))
-  (err-cli
-   (>= 0.0.5))
+  (cmdlang-cmdliner-err-runner
+   (>= 0.0.16))
+  (dune-build-info
+   (>= 3.17))
   (fpath
    (>= 0.7.3))
+  (pplumbing-err
+   (>= 0.0.16))
+  (pplumbing-log-cli
+   (>= 0.0.16))
   (loc
    (>= 0.2.0))
   (ppx_js_style

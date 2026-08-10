@@ -10,18 +10,20 @@
   -open
   Base
   -open
-  Cmdlang)
+  Cmdlang
+  -open
+  Pplumbing_log_cli)
  (libraries
   base
   bogue
-  cmdlang
-  err
-  err-cli
-  fpath
   bopkit.visa
   bopkit.visa-assembler
   bopkit.visa-simulator
-  bopkit.visa-syntax)
+  bopkit.visa-syntax
+  cmdlang
+  fpath
+  pplumbing-err
+  pplumbing-log-cli)
  (lint
   (pps ppx_js_style -check-doc-comments))
  (preprocess
